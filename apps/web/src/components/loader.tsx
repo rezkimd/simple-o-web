@@ -1,9 +1,16 @@
-import { Loader2 } from "lucide-react";
+// File: apps/web/src/components/loader.tsx
 
-export default function Loader() {
-	return (
-		<div className="flex h-full items-center justify-center pt-8">
-			<Loader2 className="animate-spin" />
-		</div>
-	);
+import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils"; // Utilitas untuk menggabungkan class CSS
+
+interface LoaderProps {
+  className?: string;
+}
+
+export default function Loader({ className }: LoaderProps) {
+  return (
+    <div className={cn("flex h-full items-center justify-center py-20", className)}>
+      <Loader2 className="h-16 w-16 animate-spin text-primary" />
+    </div>
+  );
 }
