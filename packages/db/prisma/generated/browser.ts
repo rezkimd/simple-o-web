@@ -36,3 +36,43 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Course
+ * 
+ */
+export type Course = Prisma.CourseModel
+/**
+ * Model Lesson
+ * 
+ */
+export type Lesson = Prisma.LessonModel
+/**
+ * Model LearningMaterial
+ * 
+ */
+export type LearningMaterial = Prisma.LearningMaterialModel
+/**
+ * Model Exam
+ * 
+ */
+export type Exam = Prisma.ExamModel
+/**
+ * Model Question
+ * 
+ */
+export type Question = Prisma.QuestionModel
+/**
+ * Model Enrollment
+ * 
+ */
+export type Enrollment = Prisma.EnrollmentModel
+/**
+ * Model ExamSubmission
+ * 
+ */
+export type ExamSubmission = Prisma.ExamSubmissionModel
+/**
+ * Model UserAnswer
+ * 
+ */
+export type UserAnswer = Prisma.UserAnswerModel

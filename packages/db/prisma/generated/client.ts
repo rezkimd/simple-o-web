@@ -40,8 +40,8 @@ export { Prisma }
 
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "query_engine-windows.dll.node")
-path.join(process.cwd(), "prisma/generated/query_engine-windows.dll.node")
+path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node")
+path.join(process.cwd(), "prisma/generated/libquery_engine-debian-openssl-3.0.x.so.node")
 
 /**
  * Model User
@@ -63,3 +63,43 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Course
+ * 
+ */
+export type Course = Prisma.CourseModel
+/**
+ * Model Lesson
+ * 
+ */
+export type Lesson = Prisma.LessonModel
+/**
+ * Model LearningMaterial
+ * 
+ */
+export type LearningMaterial = Prisma.LearningMaterialModel
+/**
+ * Model Exam
+ * 
+ */
+export type Exam = Prisma.ExamModel
+/**
+ * Model Question
+ * 
+ */
+export type Question = Prisma.QuestionModel
+/**
+ * Model Enrollment
+ * 
+ */
+export type Enrollment = Prisma.EnrollmentModel
+/**
+ * Model ExamSubmission
+ * 
+ */
+export type ExamSubmission = Prisma.ExamSubmissionModel
+/**
+ * Model UserAnswer
+ * 
+ */
+export type UserAnswer = Prisma.UserAnswerModel

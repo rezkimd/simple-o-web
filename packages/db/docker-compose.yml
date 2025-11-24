@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_DB: simple-o-web
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: Sayasendiri25#
     ports:
       - "5432:5432"
     volumes:

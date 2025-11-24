@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 /* @plugin "@tailwindcss/forms";
 @plugin "tailwindcss-animate"; */
 
@@ -63,14 +64,83 @@
 /* Base and Utility Layers */
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 216 55% 23%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 216 55% 23%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 55% 23%;
+
+    --primary: 216 55% 23%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 216 55% 23%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 216 20% 50%;
+
+    --accent: 48 100% 58%;
+    --accent-foreground: 216 55% 23%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
     --border: 0 0% 90%;
     --input: 0 0% 90%;
     --ring: 48 100% 58%;
-    --background: 0 0% 100%;
-    --foreground: 216 55% 23%;
+
     --radius: 0.5rem;
+
+    --gradient-hero: linear-gradient(135deg, hsl(216 55% 23%), hsl(216 45% 30%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-accent: 0 4px 14px 0 hsl(48 100% 58% / 0.2);
   }
 
+  .dark {
+    --background: 216 55% 12%;
+    --foreground: 0 0% 100%;
+
+    --card: 216 50% 16%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 216 50% 16%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 216 55% 23%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 216 40% 20%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 216 40% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 48 100% 58%;
+    --accent-foreground: 216 55% 23%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 216 40% 25%;
+    --input: 216 40% 25%;
+    --ring: 48 100% 58%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(216 55% 15%), hsl(216 45% 20%));
+    --gradient-card: linear-gradient(180deg, hsl(216 50% 16%), hsl(216 50% 18%));
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+    --shadow-accent: 0 4px 14px 0 hsl(48 100% 58% / 0.3);
+  }
+}
+
+@layer base {
   * {
     @apply border-border;
   }
@@ -99,12 +169,10 @@
   }
 }
 
-/* @utility {
-  .animate-accordion-down {
-    animation: accordion-down 0.2s ease-out;
-  }
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
 
-  .animate-accordion-up {
-    animation: accordion-up 0.2s ease-out;
-  }
-} */
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}

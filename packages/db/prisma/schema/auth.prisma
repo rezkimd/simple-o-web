@@ -6,8 +6,11 @@ model User {
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
+  
   sessions      Session[]
   accounts      Account[]
+  enrollments   Enrollment[]
+  examSubmissions ExamSubmission[]
 
   @@unique([email])
   @@map("user")
@@ -56,4 +59,103 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+// Tambahkan ini di packages/db/prisma/schema/auth.prisma
+
+// --- Model untuk Konten Pembelajaran ---
+
+model Course {
+  id          String    @id @default(cuid())
+  title       String
+  description String?   @db.Text
+  instructor  String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  lessons     Lesson[]
+  exams       Exam[]
+  enrollments Enrollment[] // Relasi ke pendaftaran siswa
+}
+
+model Lesson {
+  id        String   @id @default(cuid())
+  title     String
+  content   String   @db.Text
+  duration  Int?     // Durasi dalam menit
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  learningMaterials LearningMaterial[]
+}
+
+model LearningMaterial {
+  id        String   @id @default(cuid())
+  title     String
+  content   String   @db.Text
+  lessonId  String
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+// --- Model untuk Ujian dan Penilaian ---
+
+model Exam {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  duration     Int      // Durasi ujian dalam menit
+  courseId     String
+  course       Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  questions    Question[]
+  submissions  ExamSubmission[]
+}
+
+model Question {
+  id       String    @id @default(cuid())
+  text     String    @db.Text
+  examId   String
+  exam     Exam      @relation(fields: [examId], references: [id], onDelete: Cascade)
+}
+
+
+// --- Model untuk Melacak Progres Pengguna ---
+
+model Enrollment {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  enrolledAt DateTime @default(now())
+
+  @@unique([userId, courseId]) // Siswa hanya bisa mendaftar satu kali per kursus
+}
+
+model ExamSubmission {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  examId      String
+  exam        Exam      @relation(fields: [examId], references: [id], onDelete: Cascade)
+  score       Float?    // Skor bisa null jika belum dinilai
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+
+  answers     UserAnswer[]
+}
+
+model UserAnswer {
+  id              String   @id @default(cuid())
+  submissionId    String
+  submission      ExamSubmission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  questionId      String
+
+  answerText      String?   @db.Text // Jawaban esai pengguna
+  score           Float?    // Skor untuk jawaban ini
+  feedback        String?   @db.Text // Feedback dari penilai
 }
